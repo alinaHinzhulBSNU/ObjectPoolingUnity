@@ -20,7 +20,12 @@ public class Gem : MonoBehaviour
     private void FixedUpdate()
     {
         if (transform.position.z < -zRange) ResetPosition(); // reset if it is invisible for user
-        transform.Translate(Vector3.down * Time.deltaTime * speed); // move
+
+        // Move only active objects
+        if (gameObject.activeSelf)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * speed); // move
+        }
     }
 
     void ResetPosition() // initial state of the gem
